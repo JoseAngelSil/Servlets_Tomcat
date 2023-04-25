@@ -23,8 +23,13 @@ public class NuevaEmpresaServlet extends HttpServlet {
 		// Crear una respuesta
 		System.out.println("Nueva empresa registrada");
 		// metodo para recibir parametros con el caso de parametro nombre
+		Empresa empresa = new Empresa(); // clase empresa
 		String nombreEmpresa = request.getParameter("nombre");
 		
+		empresa.setNombre(nombreEmpresa); // enviando el nombre de la empresa al objeto
+		
+		DB baseDeDatos = new DB();
+		baseDeDatos.agregarEmpresa(empresa);
 		PrintWriter out = response.getWriter();
 		out.println("<html> "
 				+ "<body><h1>"+nombreEmpresa+" empresa registrada!!</h1></body>"
