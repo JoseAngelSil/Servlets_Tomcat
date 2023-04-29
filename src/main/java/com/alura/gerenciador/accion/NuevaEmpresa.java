@@ -1,31 +1,20 @@
-package com.alura.gerenciador.servlet;
+package com.alura.gerenciador.accion;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Servlet implementation class NuevaEmpresaServlet
- */
-public class NuevaEmpresaServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import com.alura.gerenciador.modelo.DB;
+import com.alura.gerenciador.modelo.Empresa;
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
-	
-	// cambiando el estado service a dopost para evitar el envio por metodo get
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Crear una respuesta
-		//System.out.println("Nueva empresa registrada");
-		// metodo para recibir parametros con el caso de parametro nombre
-		
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class NuevaEmpresa {
+	public void ejecutar(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		Empresa empresa = new Empresa(); // clase empresa
 		String nombreEmpresa = request.getParameter("nombre");
 		String fecha = request.getParameter("fecha");
@@ -52,8 +41,6 @@ public class NuevaEmpresaServlet extends HttpServlet {
 //		rd.forward(request, response);
 		
 		// Direccionamiento por servidor
-		response.sendRedirect("listaempresas");// se manda al servlet pero sin el caracter /	
-		
+		response.sendRedirect("entrada?accion=listaempresas");// se manda al servlet pero sin el caracter /	
 	}
-
 }

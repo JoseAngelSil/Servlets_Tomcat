@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:url value="/nuevaempresa" var="linkServerNuevaEmpresa"/>
+<c:url value="/entrada" var="linkServerNuevaEmpresa"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +13,7 @@
 	<form action="${linkServerNuevaEmpresa}" method="post">
 		Nombre de la empresa: <input type="text" name ="nombre"/>
 		fecha de abertura: <input type="text" name="fecha">
+		<input type="hidden" name="accion" value="nuevaempresa"/>
 		<input type="submit" />
 	</form>
 </body>

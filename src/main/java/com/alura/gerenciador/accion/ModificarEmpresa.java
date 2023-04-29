@@ -1,25 +1,20 @@
-package com.alura.gerenciador.servlet;
+package com.alura.gerenciador.accion;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Servlet implementation class ModificarEmpresaServlet
- */
-public class ModificarEmpresaServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import com.alura.gerenciador.modelo.DB;
+import com.alura.gerenciador.modelo.Empresa;
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class ModificarEmpresa {
+	public void ejecutar(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		Empresa empresa = new Empresa(); // clase empresa
 		String nombreEmpresa = request.getParameter("nombre");
 		String fecha = request.getParameter("fecha");
@@ -42,7 +37,6 @@ public class ModificarEmpresaServlet extends HttpServlet {
 		
 		
 		
-		response.sendRedirect("listaempresas");
+		response.sendRedirect("entrada?accion=listaempresas");
 	}
-
 }

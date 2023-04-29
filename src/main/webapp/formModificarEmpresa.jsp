@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<c:url value="/modificarempresa" var="linkServermodificarEmpresa"/>
+<c:url value="/entrada" var="linkServermodificarEmpresa"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,7 @@
 		Nombre de la empresa: <input type="text" name ="nombre" value="${empresa.nombre }"/>
 		fecha de abertura: <input type="text" name="fecha" value='<fmt:formatDate value="${empresa.fechaAbertura}" pattern="dd/MM/yyyy"/>'>
 		<input type="hidden" name="id" value="${empresa.id }"/>
+		<input type="hidden" name="accion" value="modificarempresa"/>
 		<input type="submit" />
 	</form>
-</body>
 </html>

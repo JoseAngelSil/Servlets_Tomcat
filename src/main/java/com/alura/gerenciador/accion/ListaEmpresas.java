@@ -1,21 +1,22 @@
-package com.alura.gerenciador.servlet;
+package com.alura.gerenciador.accion;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Servlet implementation class ListaEmpresasServlet
- */
-public class ListaEmpresasServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import com.alura.gerenciador.modelo.DB;
+import com.alura.gerenciador.modelo.Empresa;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response)
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class ListaEmpresas {
+
+	public void ejecutar(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
+		System.out.println("Listando de empresa");
+		// TODO Auto-generated method stub
 		DB database = new DB();
 		List<Empresa> listasEmpresas = database.getEmpresas();
 
@@ -23,5 +24,6 @@ public class ListaEmpresasServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp");
 		rd.forward(request, response);
 	}
+	
 
 }
