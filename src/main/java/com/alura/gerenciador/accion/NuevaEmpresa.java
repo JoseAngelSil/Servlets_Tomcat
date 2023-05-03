@@ -12,8 +12,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class NuevaEmpresa {
-	public void ejecutar(HttpServletRequest request, HttpServletResponse response) 
+public class NuevaEmpresa implements Accion {
+	
+	@Override
+	public String ejecutar(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		Empresa empresa = new Empresa(); // clase empresa
 		String nombreEmpresa = request.getParameter("nombre");
@@ -29,18 +31,13 @@ public class NuevaEmpresa {
 			 throw new ServletException(e);	
 		}
 		
-		empresa.setNombre(nombreEmpresa); // enviando el nombre de la empresa al objeto
+		empresa.setNombre(nombreEmpresa); 
 		empresa.setFechaAbertura(fechaApertura);
 		
 		DB baseDeDatos = new DB();
 		baseDeDatos.agregarEmpresa(empresa);
 		
-		// llamar el JSP
-//		RequestDispatcher rd = request.getRequestDispatcher("/listaempresas");
-//		request.setAttribute("empresa", empresa.getNombre()); // enviar el nombre de la empresa
-//		rd.forward(request, response);
-		
 		// Direccionamiento por servidor
-		response.sendRedirect("entrada?accion=listaempresas");// se manda al servlet pero sin el caracter /	
+		return "redirect:entrada?accion=ListaEmpresas";
 	}
 }

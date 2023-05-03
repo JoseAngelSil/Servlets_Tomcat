@@ -13,7 +13,7 @@
 	<form action="${linkServerNuevaEmpresa}" method="post">
 		Nombre de la empresa: <input type="text" name ="nombre"/>
 		fecha de abertura: <input type="text" name="fecha">
-		<input type="hidden" name="accion" value="nuevaempresa"/>
+		<input type="hidden" name="accion" value="NuevaEmpresa"/>
 		<input type="submit" />
 	</form>
 </body>
