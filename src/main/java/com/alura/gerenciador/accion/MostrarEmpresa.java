@@ -5,12 +5,11 @@ import java.io.IOException;
 import com.alura.gerenciador.modelo.DB;
 import com.alura.gerenciador.modelo.Empresa;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class MostrarEmpresa {
+public class MostrarEmpresa implements Accion{
 	
 	/**
 	 * 
@@ -19,7 +18,8 @@ public class MostrarEmpresa {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void ejecutar(HttpServletRequest request, HttpServletResponse response) 
+	@Override
+	public String ejecutar(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		System.out.println("Mostrar Empresa");
 		String paramID = request.getParameter("id");
@@ -30,7 +30,6 @@ public class MostrarEmpresa {
 		System.out.println(empBuscada.getNombre());
 		
 		request.setAttribute("empresa", empBuscada);
-		RequestDispatcher rd = request.getRequestDispatcher("/formModificarEmpresa.jsp");
-		rd.forward(request, response);
+		return "forward:formModificarEmpresa.jsp";
 	}
 }

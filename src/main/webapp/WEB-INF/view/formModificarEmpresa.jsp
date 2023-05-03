@@ -15,7 +15,7 @@
 		Nombre de la empresa: <input type="text" name ="nombre" value="${empresa.nombre }"/>
 		fecha de abertura: <input type="text" name="fecha" value='<fmt:formatDate value="${empresa.fechaAbertura}" pattern="dd/MM/yyyy"/>'>
 		<input type="hidden" name="id" value="${empresa.id }"/>
-		<input type="hidden" name="accion" value="modificarempresa"/>
+		<input type="hidden" name="accion" value="ModificarEmpresa"/>
 		<input type="submit" />
 	</form>
 </html>

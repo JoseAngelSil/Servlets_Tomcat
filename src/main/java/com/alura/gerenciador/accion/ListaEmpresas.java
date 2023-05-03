@@ -6,14 +6,14 @@ import java.util.List;
 import com.alura.gerenciador.modelo.DB;
 import com.alura.gerenciador.modelo.Empresa;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class ListaEmpresas {
+public class ListaEmpresas implements Accion{
 
-	public void ejecutar(HttpServletRequest request, HttpServletResponse response) 
+	@Override
+	public String ejecutar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Listando de empresa");
 		// TODO Auto-generated method stub
@@ -21,9 +21,9 @@ public class ListaEmpresas {
 		List<Empresa> listasEmpresas = database.getEmpresas();
 
 		request.setAttribute("empresas", listasEmpresas);
-		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp");
-		rd.forward(request, response);
+		return "forward:listaEmpresas.jsp";
 	}
+
 	
 
 }

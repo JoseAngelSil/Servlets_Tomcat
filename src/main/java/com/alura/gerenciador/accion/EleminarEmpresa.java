@@ -8,8 +8,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class EleminarEmpresa {
-	public void ejecutar(HttpServletRequest request, HttpServletResponse response) 
+public class EleminarEmpresa implements Accion {
+	
+	@Override
+	public String ejecutar(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		System.out.println("eleminadoEmpresa");
 		// TODO Auto-generated method stub
@@ -20,6 +22,6 @@ public class EleminarEmpresa {
 		
 		DB db = new DB();
 		db.eleminarEmpresa(id);
-		response.sendRedirect("entrada?accion=listaempresas");
+		return "redirect:entrada?accion=ListaEmpresas";
 	}
 }
