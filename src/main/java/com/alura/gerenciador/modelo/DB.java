@@ -7,6 +7,7 @@ import java.util.List;
 public class DB {
 	
 	private static List<Empresa> listaEmpresas = new ArrayList<>();	
+	private static List<Usuario> listaUsuarios = new ArrayList<>();
 	private static Integer llaveSecuencial = 1;
 	
 	static {
@@ -20,6 +21,17 @@ public class DB {
 		
 		listaEmpresas.add(empresa);
 		listaEmpresas.add(empresa2);
+		
+		Usuario u1 = new Usuario();
+		u1.setLogin("jose");
+		u1.setContrasena("12345");
+		Usuario u2 = new Usuario();
+		u2.setLogin("admin");
+		u2.setContrasena("jose");
+		
+		listaUsuarios.add(u1);
+		listaUsuarios.add(u2);
+		
 	}
 	
 	public void agregarEmpresa(Empresa empresa) {
@@ -55,6 +67,14 @@ public class DB {
 			if(emp.getId() == id) {
 				return  emp;
 			}
+		}
+		return null;
+	}
+	public Usuario existeUsuario(String paramLogin, String paramContrasena) {
+		// TODO Auto-generated method stub
+		for(Usuario user: listaUsuarios) {
+			if(user.esIgual(paramLogin, paramContrasena))
+				return user;
 		}
 		return null;
 	}
