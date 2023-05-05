@@ -1,34 +1,32 @@
 package com.alura.gerenciador.servlet;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
-import java.lang.Class;
 
 import com.alura.gerenciador.accion.Accion;
 
-//@WebServlet(urlPatterns = "/entrada")
-public class UnicaEntradaServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+//@WebFilter(urlPatterns = "/entrada")
+public class ControladorFilter implements Filter {
+
+	/**
+	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 */
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
+			throws IOException, ServletException {
+		System.out.println("Filtro de controlador");
+		HttpServletRequest request = (HttpServletRequest) servletRequest;
+		HttpServletResponse response = (HttpServletResponse) servletResponse;
 		String param = request.getParameter("accion");
-		/*
-		HttpSession session = request.getSession();
-		Boolean esUsuarioLogueado = session.getAttribute("loginUsuario") == null;
-		Boolean esAccionProtegida = !((param.equals("Login")) || (param.equals("LoginForm")));
-		if(esUsuarioLogueado && esAccionProtegida){
-			response.sendRedirect("entrada?accion=LoginForm"); 
-			return;
-		}
-		*/
+
 		String nombreClase = "com.alura.gerenciador.accion." + param;
 		String uri = null;
 
@@ -42,7 +40,7 @@ public class UnicaEntradaServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			throw new ServletException(e);
 		}
-		
+
 		String[] tipoURI = uri.split(":");
 		if (tipoURI[0].equals("forward")) {
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/" + tipoURI[1]);
