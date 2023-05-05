@@ -8,6 +8,7 @@ import com.alura.gerenciador.modelo.Usuario;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class Login implements Accion{
 
@@ -20,9 +21,11 @@ public class Login implements Accion{
 		
 		DB db = new DB();
 		Usuario user = db.existeUsuario(paramLogin, paramContrasena);
-		if(user != null)
+		if(user != null) {
+			HttpSession sesion = request.getSession(); // obteniendo la sesion de tomcat, relacionado a un usuario
+			sesion.setAttribute("loginUsuario", user);
 			return "redirect:entrada?accion=ListaEmpresas";
-		else
+		}else
 			return "redirect:entrada?accion=LoginForm";
 	}
 

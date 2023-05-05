@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:import url="logout-parcial.jsp"></c:import>
 	<h1>Formulario de empresa</h1>
 	<form action="${linkServerNuevaEmpresa}" method="post">
 		Nombre de la empresa: <input type="text" name ="nombre"/>

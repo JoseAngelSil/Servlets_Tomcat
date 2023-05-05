@@ -10,6 +10,7 @@
 <title>Modificar Empresa</title>
 </head>
 <body>
+	<c:import url="logout-parcial.jsp"></c:import>
 	<h1>Editar empresa ${empresa.nombre }</h1>
 	<form action="${linkServermodificarEmpresa}" method="post">
 		Nombre de la empresa: <input type="text" name ="nombre" value="${empresa.nombre }"/>

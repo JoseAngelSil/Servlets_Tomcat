@@ -1,0 +1,1 @@
+<a href="entrada?accion=Logout">Cerrar Sesion</a>
