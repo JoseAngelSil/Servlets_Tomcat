@@ -78,4 +78,7 @@ public class DB {
 		}
 		return null;
 	}
+	public List<Usuario> getUsuarios(){
+		return DB.listaUsuarios;
+	}
 }
